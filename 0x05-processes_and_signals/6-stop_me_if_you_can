@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Disable Shellcheck warning for pkill command
-# shellcheck disable=SC2009
-pkill -f "4-to_infinity_and_beyond"
 
-# Check if the process is still running
-if ps aux | grep "[4]-to_infinity_and_beyond" | grep -v "grep"; then
-    echo "Process 4-to_infinity_and_beyond is still running."
+# Get the PID of the 4-to_infinity_and_beyond process
+pid=$(pgrep -f "4-to_infinity_and_beyond")
+
+if [ -n "$pid" ]; then
+    echo "Terminating process $pid"
+    pkill -TERM -P "$pid"
 else
-    echo "Process 4-to_infinity_and_beyond has been terminated."
+    echo "Process not found"
 fi
