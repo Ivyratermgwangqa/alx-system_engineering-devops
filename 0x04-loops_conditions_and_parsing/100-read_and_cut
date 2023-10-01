@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# This script displays the content of /etc/passwd with specific information
+
+# Use the IFS (Internal Field Separator) to change the delimiter to ":"
+IFS=":"
+
+# Read the /etc/passwd file line by line
+while read -r username _ userid _ homedir _; do
+    echo "$username:$userid:$homedir"
+done < /etc/passwd
