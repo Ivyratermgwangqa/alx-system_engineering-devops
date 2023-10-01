@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Get the PID of the current script
+current_pid=$$
+
+# List all processes and their details
+while read -r line; do
+  # Extract PID and process name
+  pid=$(echo "$line" | awk '{print $1}')
+  process_name=$(echo "$line" | awk '{print $NF}')
+  
+  # Check if the process name contains "bash" and is not the current script
+  if [[ "$process_name" == *bash* && "$pid" != "$current_pid" ]]; then
+    echo "$pid $process_name"
+  fi
+done < <(ps aux)
