@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script tells the story of /etc/passwd
+
+# Set the IFS (Internal Field Separator) to ":"
+IFS=":"
+
+# Read the /etc/passwd file line by line
+while read -r username _ userid groupid _ homedir shell; do
+    info=$(getent passwd "$username")
+
+    password=$(echo "$info" | cut -d: -f2)
+
+    additional_info=$(echo "$info" | cut -d: -f5)
+
+    echo "The user $username is part of the $groupid gang, lives in $homedir and rides $shell. $userid's place is protected by the passcode $password, more info about the user here: $additional_info"
+done < /etc/passwd
