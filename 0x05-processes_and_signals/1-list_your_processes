@@ -1,3 +1,7 @@
-#!/bin/bash
-# Display the process information with the desired format
-ps -eo user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --forest
+#!/usr/bin/env bash
+# Display the header
+printf "%-10s %-10s %-4s %-4s %-8s %-8s %-10s %-4s %-5s %s\n" "USER" "PID" "%CPU" "%MEM" "VSZ" "RSS" "TTY" "STAT" "START" "TIME" "COMMAND"
+
+# Use ps command to list all processes with hierarchy, then format the output
+ps axo user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --sort=-%cpu | awk 'NR <= 50 { printf "%-10s %-10s %-4s %-4s %-8s %-8s %-10s %-4s %-5s %s\n", $1, $2, $3, $4, $5, $6, $7, $8, $9, $10 }'
+
