@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# The script that displays "To infinity and beyond indefinitely" 
 terminate() {
     echo "I am invincible!!!"
     exit
