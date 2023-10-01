@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
-# This script that displays To infinity and beyond indefinitely.
+
+# Function to handle SIGTERM signal
+terminate() {
+    echo "Terminated"
+    exit
+}
+
+# Trap SIGTERM signal and call the terminate function
+trap 'terminate' SIGTERM
+
+# Main loop
 while true; do
     echo "To infinity and beyond"
     sleep 2
