@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Start the 4-to_infinity_and_beyond process
+./4-to_infinity_and_beyond &
+
+# Capture its PID
+PID=$!
+
+# Wait for user input to stop the process
+read -rp "Press Enter to stop the process..."
+
+# Use kill to send the SIGTERM signal
+kill -TERM "$PID"
