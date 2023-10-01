@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Find and kill the 4-to_infinity_and_beyond process
+# Disable Shellcheck warning for pkill command
+# shellcheck disable=SC2009
 pkill -f "4-to_infinity_and_beyond"
 
 # Check if the process is still running
