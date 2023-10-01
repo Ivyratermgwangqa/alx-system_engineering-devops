@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Start the 4-to_infinity_and_beyond process
+# Start the 4-to_infinity_and_beyond process in the background
 ./4-to_infinity_and_beyond &
 
 # Capture its PID
