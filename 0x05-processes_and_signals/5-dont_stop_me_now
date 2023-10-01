@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Start the 4-to_infinity_and_beyond process in the background
-./4-to_infinity_and_beyond &
+# Start the 4-to_infinity_and_beyond process in the background and capture its PID
+(./4-to_infinity_and_beyond) &
 
-# Capture its PID
+# Capture the PID of the background process
 PID=$!
 
 # Wait for user input to stop the process
