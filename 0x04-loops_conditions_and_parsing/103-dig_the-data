@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 # This script groups visitors by IP and HTTP status code and displays the data
 
 # Use awk to extract IP and HTTP status code, then count occurrences
