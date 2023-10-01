@@ -8,5 +8,12 @@ PID=$!
 # Wait for user input to stop the process
 read -rp "Press Enter to stop the process..."
 
-# Use kill to send the SIGTERM signal
-kill -TERM "$PID"
+# Terminate the process using a background subshell
+( kill -TERM "$PID" && wait "$PID" ) 2>/dev/null
+
+# Optionally, check if the process is still running
+if ps -p "$PID" > /dev/null; then
+    echo "Process $PID is still running."
+else
+    echo "Process $PID has been terminated."
+fi
