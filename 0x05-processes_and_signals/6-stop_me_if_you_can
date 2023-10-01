@@ -1,19 +1,10 @@
 #!/usr/bin/env bash
-# Start the 4-to_infinity_and_beyond process
-./4-to_infinity_and_beyond &
+# Find and kill the 4-to_infinity_and_beyond process
+pkill -f "4-to_infinity_and_beyond"
 
-# Capture its PID
-PID=$!
-
-# Wait for user input to stop the process
-read -rp "Press Enter to stop the process..."
-
-# Terminate the process using a background subshell
-( kill -TERM "$PID" && wait "$PID" ) 2>/dev/null
-
-# Optionally, check if the process is still running
-if ps -p "$PID" > /dev/null; then
-    echo "Process $PID is still running."
+# Check if the process is still running
+if ps aux | grep "[4]-to_infinity_and_beyond" | grep -v "grep"; then
+    echo "Process 4-to_infinity_and_beyond is still running."
 else
-    echo "Process $PID has been terminated."
+    echo "Process 4-to_infinity_and_beyond has been terminated."
 fi
