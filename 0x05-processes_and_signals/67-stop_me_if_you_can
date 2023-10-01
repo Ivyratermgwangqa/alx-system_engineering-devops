@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Script named 67-stop_me_if_you_can that kills the 7-highlander process.
+pkill -f "7-highlander"
