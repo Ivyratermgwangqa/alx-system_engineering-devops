@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Define the PID file path
 PID_FILE="/var/run/my_process.pid"
 
