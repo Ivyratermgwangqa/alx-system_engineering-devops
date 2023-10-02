@@ -1,15 +1,4 @@
 #!/usr/bin/env bash
-# Start the 4-to_infinity_and_beyond process in the background and capture its PID
-(./4-to_infinity_and_beyond) &
+# Start the 4-to_infinity_and_beyond process in the background.
 
-# Capture the PID of the background process
-PID=$!
-
-# Wait for user input to stop the process
-read -rp "Press Enter to stop the process..."
-
-# Use kill to stop the process by PID
-kill "$PID"
-
-# Print a message indicating the process has been terminated
-echo "Terminated"
+kill "$(pgrep -f 4-to_infinity_and_beyond)"
