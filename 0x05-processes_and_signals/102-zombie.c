@@ -32,7 +32,7 @@ int main(void)
             return 1;
         }
         if (child_pid == 0) {
-            printk("Zombie process created, PID: %d\n", getpid());
+            printf("Zombie process created, PID: %d\n", getpid());
             exit(0);
         }
     }
