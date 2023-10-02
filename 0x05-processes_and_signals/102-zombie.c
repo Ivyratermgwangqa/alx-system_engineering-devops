@@ -1,8 +1,10 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+#include <linux/module.h>
+#include <linux/kernel.h>
+#include <linux/init.h>
+#include <linux/sched.h>
+#include <linux/unistd.h>
+
+MODULE_LICENSE("GPL");
 
 /**
  * infinite_while - Infinite loop to keep the program running
@@ -11,31 +13,34 @@
 int infinite_while(void)
 {
     while (1) {
-        sleep(1);
+        schedule();
     }
     return 0;
 }
 
-/**
- * main - Entry point
- * Return: Always 0
- */
-int main(void)
+static int __init zombie_init(void)
 {
     pid_t child_pid;
     int i;
 
     for (i = 0; i < 5; i++) {
         child_pid = fork();
-        if (child_pid == -1) {
-            perror("fork");
-            return 1;
+        if (child_pid < 0) {
+            pr_err("Failed to fork\n");
+            return -1;
         }
         if (child_pid == 0) {
-            printf("Zombie process created, PID: %d\n", getpid());
+            pr_info("Zombie process created, PID: %d\n", getpid());
             exit(0);
         }
     }
-    infinite_while();
     return 0;
 }
+
+static void __exit zombie_exit(void)
+{
+    pr_info("Module unloaded\n");
+}
+
+module_init(zombie_init);
+module_exit(zombie_exit);
