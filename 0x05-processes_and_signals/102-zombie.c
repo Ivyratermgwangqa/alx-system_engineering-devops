@@ -1,46 +1,45 @@
-#include <linux/module.h>
-#include <linux/kernel.h>
-#include <linux/init.h>
-#include <linux/sched.h>
-#include <linux/unistd.h>
-
-MODULE_LICENSE("GPL");
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 /**
- * infinite_while - Infinite loop to keep the program running
- * Return: Always 0
+ * infinite_while - Function of an infinite loop
+ * Return: 0
  */
+
 int infinite_while(void)
 {
-    while (1) {
-        schedule();
-    }
-    return 0;
+	while (1)
+	{
+		sleep(1);
+	}
+	return (0);
 }
 
-static int __init zombie_init(void)
+/**
+ * main - function that creates 5 zombie processes
+ * Return: 0
+ */
+
+int main(void)
 {
-    pid_t child_pid;
-    int i;
+	pid_t process_id;
+	char i = 0;
 
-    for (i = 0; i < 5; i++) {
-        child_pid = fork();
-        if (child_pid < 0) {
-            pr_err("Failed to fork\n");
-            return -1;
-        }
-        if (child_pid == 0) {
-            pr_info("Zombie process created, PID: %d\n", getpid());
-            exit(0);
-        }
-    }
-    return 0;
+	while (i < 5)
+	{
+		process_id = fork();
+		if (process_id > 0)
+		{
+			printf("Zombie process created, PID: %d", process_id);
+			sleep(1);
+			i++;
+		}
+		else
+			exit(0);
+	}
+	infinite_while();
+	return (EXIT_SUCCESS);
 }
-
-static void __exit zombie_exit(void)
-{
-    pr_info("Module unloaded\n");
-}
-
-module_init(zombie_init);
-module_exit(zombie_exit);
