@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 # Get a list of directories in /proc that are numerical (representing PIDs)
-pids=($(find /proc -maxdepth 1 -type d -regex "^/proc/[0-9]+"))
+# Print the PID of bash process alternative way
 
-# Iterate through the PID directories
-for pid_dir in "${pids[@]}"; do
-    pid=$(basename "$pid_dir")
-    # Check if the process name contains "bash"
-    cmd=$(cat "$pid_dir/comm" 2>/dev/null)
-    if [[ "$cmd" == *bash* ]]; then
-        echo "$pid $cmd"
-    fi
-done
+pgrep bash -l
