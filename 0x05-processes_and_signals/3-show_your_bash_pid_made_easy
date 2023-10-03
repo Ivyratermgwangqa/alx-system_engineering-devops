@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Get a list of directories in /proc that are numerical (representing PIDs)
-# Print the PID of bash process alternative way
-
-pgrep bash -l
