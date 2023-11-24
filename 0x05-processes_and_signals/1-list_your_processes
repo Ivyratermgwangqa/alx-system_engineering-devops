@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Print headers
+echo "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND"
+
+# List all processes, including those of all users, and display in a user-oriented format
+ps aux --forest | tail -n +2
