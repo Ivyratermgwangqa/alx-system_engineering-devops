@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script displays different messages based on the loop iteration
+# This script displays the different messages based on the loop iteration
 
 # Initialize a counter
 count=1
