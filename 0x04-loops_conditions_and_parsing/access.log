@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script groups visitors by IP and HTTP status code and displays the data
+# This script groups the visitors by IP and HTTP status code and displays the data
 
 # Use awk to group and count occurrences
 awk '{print $1, $9}' ./access.log | sort | uniq -c | sort -rn
