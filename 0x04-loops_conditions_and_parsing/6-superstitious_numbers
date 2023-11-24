@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script displays numbers and custom messages for specific iterations
+# This script displays the numbers and custom messages for specific iterations
 
 # Initialize a counter
 count=1
