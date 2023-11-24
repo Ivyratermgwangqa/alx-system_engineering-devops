@@ -1,7 +1,3 @@
-sses_and_signals
-
-Certainly! Below is a README file for the "0x05-processes_and_signals" tasks you inquired about:
-
 ```
 # 0x05. Processes and Signals
 
