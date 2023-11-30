@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-#!/usr/bin/env bash
-
-# Change localhost to 127.0.0.2
-sudo sed -i 's/127.0.0.1 localhost/127.0.0.2 localhost/' /etc/hosts
-
-# Change facebook.com to 8.8.8.8
-sudo sed -i 's/facebook.com/8.8.8.8/' /etc/hosts
-=======
 #!/usr/bin/env bash
 # This script configures an Ubuntu server to update host entries.
 # It resolves localhost to 127.0.0.2 and facebook.com to 8.8.8.8.
@@ -25,4 +16,3 @@ cp -f ~/hosts_backup /etc/hosts
 
 # Clean up: Remove the temporary backup file
 rm ~/hosts_backup
->>>>>>> c4083f6f55ef80fdd4f2e4c3009de2b120977d87
