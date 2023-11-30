@@ -2,7 +2,8 @@
 
 # Ping an IP address 5 times
 
-if [ -z "$1" ]; then
+if [ -z "$1" ];
+then
     echo "Usage: $0 {IP_ADDRESS}"
     exit 1
 fi
