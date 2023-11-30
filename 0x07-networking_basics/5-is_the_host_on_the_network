@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/usr/bin/env bash
 
 # Ping an IP address 5 times
@@ -11,3 +12,16 @@ fi
 ip_address="$1"
 
 ping -c 5 "$ip_address"
+=======
+#!/usr/bin/env bash
+
+# Ping an IP address 5 times
+if [ -z "$1" ]
+then
+	echo 'Usage: 5-is_the_host_on_the_network {IP_ADDRESS}'
+fi
+
+ip_address="$1"
+
+ping -c 5 "$ip_address"
+>>>>>>> 8964919bf5b2ccaf653fb11e7f48cfc66dc0e8a1
