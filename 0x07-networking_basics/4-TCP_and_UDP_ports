@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Display listening sockets with PID and program name
+
+echo "Active Internet connections (only servers)"
+echo "Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name"
+
+# Display TCP listening sockets
+sudo netstat -tlnp | awk '/tcp/ {print $1, "\t", $4, "\t\t", $7}' | sed -e 's/.*://' -e 's/\//\t\t/' -e 's/^/tcp\t/'
+
+# Display UDP listening sockets
+sudo netstat -ulnp | awk '/udp/ {print $1, "\t", $4, "\t\t", $7}' | sed -e 's/.*://' -e 's/\//\t\t/' -e 's/^/udp\t/'
+
+echo -e "\nActive UNIX domain sockets (only servers)"
+echo "Proto RefCnt Flags       Type       State         I-Node   PID/Program name    Path"
+
+# Display UNIX domain sockets
+sudo netstat -lx | awk '/unix/ {print $1, "\t", $2, "\t\t", $3, "\t\t", $4, "\t", $6}' | sed -e 's/.*://' -e 's/\//\t\t/' -e 's/^/unix\t/'
