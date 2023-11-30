@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Displays all active IPv4 IPs
 
-# Use ifconfig to display active IPv4 IPs
-ifconfig | grep -oP 'inet addr:\K[^\s]+'
+# Use ifconfig to get information about network interfaces
+# Filter lines containing "inet addr:" and print the fourth field (IPv4 address)
+ifconfig | awk -F "[: ]+" '/inet addr:/ { print $4 }'
