@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Change localhost to 127.0.0.2
+sudo sed -i 's/127.0.0.1 localhost/127.0.0.2 localhost/' /etc/hosts
+
+# Change facebook.com to 8.8.8.8
+sudo sed -i 's/facebook.com/8.8.8.8/' /etc/hosts
