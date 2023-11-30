@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Listens to port 98 on localhost
 
-# Listen on port 98
-sudo nc -lkp 98
+# Use netcat to set up a listener on localhost and port 98
+sudo nc -l localhost 98
