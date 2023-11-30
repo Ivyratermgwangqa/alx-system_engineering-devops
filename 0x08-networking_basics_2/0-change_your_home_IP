@@ -13,6 +13,3 @@ sed -i "\$a 8.8.8.8 facebook.com" ~/hosts_backup
 
 # Replace the original hosts file with the modified version
 cp -f ~/hosts_backup /etc/hosts
-
-# Clean up: Remove the temporary backup file
-rm ~/hosts_backup
