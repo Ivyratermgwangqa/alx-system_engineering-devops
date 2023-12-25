@@ -1,5 +1,6 @@
 ```
 # 0x05. Processes and Signals
+```
 
 ## Description
 This repository contains Bash and C scripts related to processes and signals in the Unix/Linux operating system.
@@ -34,6 +35,4 @@ To use these scripts, follow these steps:
    ```
 
 ## Author
-This repository was created by Ivyratermgwanqa.
-
-```
+This repository was created by Ivyratermgwangqa 
