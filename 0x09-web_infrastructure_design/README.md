@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is part of the DevOps and SysAdmin track at [Holberton School](https://www.holbertonschool.com/). It aims to enhance understanding and practical application of web infrastructure concepts, including DNS, monitoring, web servers, network basics, load balancers, and servers.
+This project is part of the DevOps and SysAdmin track at [AlxSE](https://www.alxafrica.com/). It aims to enhance understanding and practical application of web infrastructure concepts, including DNS, monitoring, web servers, network basics, load balancers, and servers.
 
 ## Learning Objectives
 
@@ -123,4 +123,4 @@ Servers, whether physical or virtual, host applications and services. Servers ru
 
 ## Acknowledgments
 
-This project is part of the curriculum at [alxse](https://www.alx.com/) and is designed to strengthen practical skills in web infrastructure design.
+This project is part of the curriculum at [alxse](https://www.alxafrica.com/) and is designed to strengthen practical skills in web infrastructure design.
