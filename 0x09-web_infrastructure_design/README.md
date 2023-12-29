@@ -44,32 +44,19 @@ This repository contains designs for various web infrastructures as part of the 
 
 ## Project Structure
 
-- **0-simple_web_stack.md**
-  - [Link to file](./0x09-web_infrastructure_design/0-simple_web_stack/0-simple_web_stack.md)
-  - [Link to PNG](./0x09-web_infrastructure_design/0-simple_web_stack/0-simple_web_stack.png)
-  - Description: Design for a simple web infrastructure with a single server using LAMP stack.
-
-- **1-distributed_web_infrastructure.md**
-  - [Link to file](./0x09-web_infrastructure_design/1-distributed_web_infrastructure/1-distributed_web_infrastructure.md)
-  - [Link to PNG](./0x09-web_infrastructure_design/1-distributed_web_infrastructure/1-distributed_web_infrastructure.png)
-  - Description: Design for a three-server web infrastructure with load balancing and distribution.
-
-- **2-secured_and_monitored_web_infrastructure.md**
-  - [Link to file](./0x09-web_infrastructure_design/2-secured_and_monitored_web_infrastructure/2-secured_and_monitored_web_infrastructure.md)
-  - [Link to PNG](./0x09-web_infrastructure_design/2-secured_and_monitored_web_infrastructure/2-secured_and_monitored_web_infrastructure.png)
-  - Description: Design for a secured and monitored web infrastructure with firewalls, SSL, and monitoring tools.
-
-- **3-scale_up.md**
-  - [Link to file](./0x09-web_infrastructure_design/3-scale_up/3-scale_up.md)
-  - [Link to PNG](./0x09-web_infrastructure_design/3-scale_up/3-scale_up.png)
-  - Description: Advanced design with server scaling and load balancing configured as a cluster.
-
 ### Task 0: Simple Web Stack
 
 #### Design on Whiteboard
 1. Sketch a single-server web infrastructure on a whiteboard.
 2. Include components such as the server, web server (Nginx), application server, and database.
 3. Connect these components to represent the flow of data.
+
+
+- **0-simple_web_stack.md**
+  - [Link to file](./0x09-web_infrastructure_design/0-simple_web_stack/0-simple_web_stack.md)
+  - [Link to PNG](./0x09-web_infrastructure_design/0-simple_web_stack/0-simple_web_stack.png)
+  - Description: Design for a simple web infrastructure with a single server using LAMP stack.
+
 
 #### Explanations
 1. Explain the role of each component.
@@ -85,6 +72,12 @@ This repository contains designs for various web infrastructures as part of the 
 2. Add components such as servers, load balancer (HAproxy), web server, application server, and database.
 3. Connect these components to represent the flow of data.
 
+- **1-distributed_web_infrastructure.md**
+  - [Link to file](./0x09-web_infrastructure_design/1-distributed_web_infrastructure/1-distributed_web_infrastructure.md)
+  - [Link to PNG](./0x09-web_infrastructure_design/1-distributed_web_infrastructure/1-distributed_web_infrastructure.png)
+  - Description: Design for a three-server web infrastructure with load balancing and distribution.
+
+  
 #### Explanations
 1. Explain the purpose of each added component.
 2. Discuss the issues: SPOF, security issues, no monitoring.
@@ -98,6 +91,12 @@ This repository contains designs for various web infrastructures as part of the 
 1. Sketch a three-server web infrastructure with added security measures and monitoring.
 2. Add components such as firewalls, SSL certificate, and monitoring clients.
 3. Connect these components to represent the flow of data.
+
+- **2-secured_and_monitored_web_infrastructure.md**
+  - [Link to file](./0x09-web_infrastructure_design/2-secured_and_monitored_web_infrastructure/2-secured_and_monitored_web_infrastructure.md)
+  - [Link to PNG](./0x09-web_infrastructure_design/2-secured_and_monitored_web_infrastructure/2-secured_and_monitored_web_infrastructure.png)
+  - Description: Design for a secured and monitored web infrastructure with firewalls, SSL, and monitoring tools.
+
 
 #### Explanations
 1. Explain the purpose of each additional element.
@@ -113,6 +112,11 @@ This repository contains designs for various web infrastructures as part of the 
 2. Add 1 server and 1 load balancer (HAproxy) configured as a cluster with the other one.
 3. Split components (web server, application server, database) with their own server.
 4. Connect these components to represent the flow of data.
+
+- **3-scale_up.md**
+  - [Link to file](./0x09-web_infrastructure_design/3-scale_up/3-scale_up.md)
+  - [Link to PNG](./0x09-web_infrastructure_design/3-scale_up/3-scale_up.png)
+  - Description: Advanced design with server scaling and load balancing configured as a cluster.
 
 #### Explanations
 1. Explain why each additional element is added to scale up the infrastructure.
