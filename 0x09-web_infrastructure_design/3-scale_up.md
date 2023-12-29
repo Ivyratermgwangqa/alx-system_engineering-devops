@@ -37,4 +37,4 @@ This task involves scaling up the web infrastructure by introducing a dedicated 
 
 ## Repository
 
-- [GitHub Repository Link](<https://github.com/Ivyratermgwangqa/alx-system_engineering-devops.git>)
+- [](<https://github.com/Ivyratermgwangqa/alx-system_engineering-devops.git>)
