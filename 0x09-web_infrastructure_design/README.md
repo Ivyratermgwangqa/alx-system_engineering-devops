@@ -38,6 +38,31 @@ Explore the role of load balancers in distributing web traffic across multiple s
 Servers, whether physical or virtual, host applications and services. Servers run operating systems and are essential components in web infrastructures. Differentiate between a server and a web server.
 
 ## Tasks
+# Web Infrastructure Design
+
+This repository contains designs for various web infrastructures as part of the Alx School DevOps track projects.
+
+## Project Structure
+
+- **0-simple_web_stack.md**
+  - [Link to file](./0x09-web_infrastructure_design/0-simple_web_stack/0-simple_web_stack.md)
+  - [Link to PNG](./0x09-web_infrastructure_design/0-simple_web_stack/0-simple_web_stack.png)
+  - Description: Design for a simple web infrastructure with a single server using LAMP stack.
+
+- **1-distributed_web_infrastructure.md**
+  - [Link to file](./0x09-web_infrastructure_design/1-distributed_web_infrastructure/1-distributed_web_infrastructure.md)
+  - [Link to PNG](./0x09-web_infrastructure_design/1-distributed_web_infrastructure/1-distributed_web_infrastructure.png)
+  - Description: Design for a three-server web infrastructure with load balancing and distribution.
+
+- **2-secured_and_monitored_web_infrastructure.md**
+  - [Link to file](./0x09-web_infrastructure_design/2-secured_and_monitored_web_infrastructure/2-secured_and_monitored_web_infrastructure.md)
+  - [Link to PNG](./0x09-web_infrastructure_design/2-secured_and_monitored_web_infrastructure/2-secured_and_monitored_web_infrastructure.png)
+  - Description: Design for a secured and monitored web infrastructure with firewalls, SSL, and monitoring tools.
+
+- **3-scale_up.md**
+  - [Link to file](./0x09-web_infrastructure_design/3-scale_up/3-scale_up.md)
+  - [Link to PNG](./0x09-web_infrastructure_design/3-scale_up/3-scale_up.png)
+  - Description: Advanced design with server scaling and load balancing configured as a cluster.
 
 ### Task 0: Simple Web Stack
 
@@ -53,9 +78,6 @@ Servers, whether physical or virtual, host applications and services. Servers ru
 #### Screenshot
 - Take a picture/screenshot of your whiteboard design.
 
-#### Repository
-- [GitHub Repository Link](<insert_repository_url_here>)
-
 ### Task 1: Distributed Web Infrastructure
 
 #### Design on Whiteboard
@@ -69,9 +91,6 @@ Servers, whether physical or virtual, host applications and services. Servers ru
 
 #### Screenshot
 - Take a picture/screenshot of your whiteboard design.
-
-#### Repository
-- [GitHub Repository Link](<insert_repository_url_here>)
 
 ### Task 2: Secured and Monitored Web Infrastructure
 
@@ -87,9 +106,6 @@ Servers, whether physical or virtual, host applications and services. Servers ru
 #### Screenshot
 - Take a picture/screenshot of your whiteboard design.
 
-#### Repository
-- [GitHub Repository Link](<insert_repository_url_here>)
-
 ### Task 3: Scale Up
 
 #### Design on Whiteboard
@@ -104,15 +120,6 @@ Servers, whether physical or virtual, host applications and services. Servers ru
 #### Screenshot
 - Take a picture/screenshot of your whiteboard design.
 
-#### Repository
-- [GitHub Repository Link](<>)
-
-## General Requirements
-
-- A README.md file is mandatory at the root of the project folder.
-- For each task, whiteboard the design and take a picture/screenshot.
-- Upload screenshots to any image hosting service and insert the links in the README.md.
-- Push the project to GitHub and provide the repository link.
 
 ## Final Steps
 
@@ -124,3 +131,11 @@ Servers, whether physical or virtual, host applications and services. Servers ru
 ## Acknowledgments
 
 This project is part of the curriculum at [alxse](https://www.alxafrica.com/) and is designed to strengthen practical skills in web infrastructure design.
+
+## Usage
+
+Feel free to review each design and use them as a reference for your web infrastructure projects.
+
+## Author
+
+[Lerato Mgwangqa](https://github.com/Ivyratermgwangqa)
