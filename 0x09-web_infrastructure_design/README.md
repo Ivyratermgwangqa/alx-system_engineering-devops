@@ -53,7 +53,7 @@ This repository contains designs for various web infrastructures as part of the 
 
 
 - **0-simple_web_stack.md**
-  - [Link to file](./0x09-web_infrastructure_design/0-simple_web_stack.md)
+  - [Link to file](./0x09-web_infrastructure_design/0-simple_web_stack)
   - [Link to PNG](./0x09-web_infrastructure_design/0-simple_web_stack.png)
   - Description: Design for a simple web infrastructure with a single server using LAMP stack.
 
@@ -73,7 +73,7 @@ This repository contains designs for various web infrastructures as part of the 
 3. Connect these components to represent the flow of data.
 
 - **1-distributed_web_infrastructure.md**
-  - [Link to file](./0x09-web_infrastructure_design/1-distributed_web_infrastructure.md)
+  - [Link to file](./0x09-web_infrastructure_design/1-distributed_web_infrastructure)
   - [Link to PNG](./0x09-web_infrastructure_design/1-distributed_web_infrastructure.png)
   - Description: Design for a three-server web infrastructure with load balancing and distribution.
 
@@ -93,7 +93,7 @@ This repository contains designs for various web infrastructures as part of the 
 3. Connect these components to represent the flow of data.
 
 - **2-secured_and_monitored_web_infrastructure.md**
-  - [Link to file](./0x09-web_infrastructure_design/2-secured_and_monitored_web_infrastructure.md)
+  - [Link to file](./0x09-web_infrastructure_design/2-secured_and_monitored_web_infrastructure)
   - [Link to PNG](./0x09-web_infrastructure_design/2-secured_and_monitored_web_infrastructure.png)
   - Description: Design for a secured and monitored web infrastructure with firewalls, SSL, and monitoring tools.
 
@@ -114,7 +114,7 @@ This repository contains designs for various web infrastructures as part of the 
 4. Connect these components to represent the flow of data.
 
 - **3-scale_up.md**
-  - [Link to file](./0x09-web_infrastructure_design/3-scale_up.md)
+  - [Link to file](./0x09-web_infrastructure_design/3-scale_up)
   - [Link to PNG](./0x09-web_infrastructure_design/3-scale_up.png)
   - Description: Advanced design with server scaling and load balancing configured as a cluster.
 
