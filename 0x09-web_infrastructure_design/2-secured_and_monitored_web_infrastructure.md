@@ -6,7 +6,7 @@ This task involves designing a three-server web infrastructure that hosts the we
 
 ## Design on Whiteboard
 
-![Whiteboard Design](<insert_image_url_here>)
+![Whiteboard Design](<https://raw.githubusercontent.com/Ivyratermgwangqa/alx-system_engineering-devops/master/0x09-web_infrastructure_design/2-secured_and_monitored_web_infrastructure.png>)
 
 ## Explanation
 
