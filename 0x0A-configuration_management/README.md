@@ -1,6 +1,3 @@
-Certainly! Below is a template for your `README.md` file summarizing the tasks 0-2:
-
-
 # 0x0A Configuration Management
 
 This repository contains Puppet manifests for tasks related to configuration management.
