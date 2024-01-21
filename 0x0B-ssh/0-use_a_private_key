@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-#!/usr/bin/env bash
-# This script connects to a server using SSH with a private key
-
-ssh -i ~/.ssh/school ubuntu@your_server_ip
-=======
 #!/usr/bin/env bash
 # This script connects to a server using SSH with a private key
 
@@ -15,4 +9,3 @@ if [ -f "$private_key_path" ]; then
 else
     echo "Private key not found at $private_key_path"
 fi
->>>>>>> d4c06bcc0e199a6743da981339076234934f5916
