@@ -1,11 +1,7 @@
 # This Puppet script configures the SSH client
+# Use puppet to make configuration SSH file access without password
 
-file_line { 'Turn off passwd auth':
-  path   => '/etc/ssh/sshd_config',
-  line   => 'PasswordAuthentication no',
-}
-
-file_line { 'Declare identity file':
-  path   => '~/.ssh/config',
-  line   => 'IdentityFile ~/.ssh/school',
+exec {'/etc/ssh/ssh_config':
+  path    => '/bin',
+  command => 'echo "PasswordAuthentication no" >> /etc/ssh/ssh_config; echo "IdentityFile ~/.ssh/school" >> /etc/ssh/ssh_config',
 }
