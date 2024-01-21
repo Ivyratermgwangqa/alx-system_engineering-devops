@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
 # This script connects to a server using SSH with a private key
 
-ssh -i ~/.ssh/school ubuntu@your_server_ip
+# Set the correct path to the private key
+private_key_path="/root/.ssh/school"
+
+# Replace 'your_server_ip' with the actual IP address of your server
+server_ip="your_actual_server_ip"
+
+ssh -i "$private_key_path" ubuntu@"$server_ip"
