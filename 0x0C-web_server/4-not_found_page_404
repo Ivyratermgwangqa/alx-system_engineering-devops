@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Configure Nginx custom 404 page with the string "Ceci n'est pas une page"
+
+# Create a custom error page with the required string
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/404.html
+
+# Update Nginx configuration to use the custom 404 page
+sed -i '/server_name _;/a \\\n\terror_page 404 /404.html;\n' /etc/nginx/sites-available/default
+
+# Restart Nginx without using systemctl
+/etc/init.d/nginx restart
