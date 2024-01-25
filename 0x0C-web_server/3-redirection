@@ -1,12 +1,28 @@
 #!/usr/bin/env bash
-# Configure Nginx redirection from /redirect_me to another page
+# Update package information
+apt-get update
 
-sudo apt-get update
-sudo apt-get install -y nginx
+# Install Nginx
+apt-get install nginx -y
 
-echo "Hello World!" | sudo tee /var/www/html/index.html
-# Create a new location block for redirection in the default Nginx configuration
-sed -i '/server_name _;/a \\\n\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n' /etc/nginx/sites-available/default
+# Create a new server block for redirection
+echo "
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
 
-# Restart Nginx without using systemctl
-/etc/init.d/nginx restart
+    server_name _;
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+
+    # Additional server configuration goes here
+}
+" | sudo tee /etc/nginx/sites-available/redirect_me > /dev/null
+
+# Enable the new site
+ln -s /etc/nginx/sites-available/redirect_me /etc/nginx/sites-enabled/
+
+# Reload Nginx to apply changes
+service nginx reload
