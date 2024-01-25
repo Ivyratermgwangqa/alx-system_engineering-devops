@@ -1,22 +1,17 @@
 #!/usr/bin/env bash
-# Installs and configures an Nginx server
 
-# Use sudo for commands that require elevated privileges
-sudo apt-get update
-sudo apt-get install nginx -y
+# Install Nginx
+apt-get update
+apt-get install nginx -y
 
-# Check if Nginx is already running
-if ! sudo service nginx status > /dev/null; then
-    sudo service nginx start
-fi
+# Start Nginx
+service nginx start
 
-# Set appropriate permissions for the HTML file
-sudo chmod 644 /usr/share/nginx/html/index.html
-
-# Create or update the HTML file with "Hello World!"
-echo -e 'Hello World!' | sudo tee /usr/share/nginx/html/index.html > /dev/null
+# Configure Nginx to listen on port 80
+sed -i 's/80 default_server/80/' /etc/nginx/sites-available/default
 
 # Reload Nginx to apply changes
-sudo service nginx reload
+service nginx reload
 
-echo "Nginx installed and configured successfully!"
+# Create Hello World! index.html
+echo 'Hello World!' > /usr/share/nginx/html/index.html
