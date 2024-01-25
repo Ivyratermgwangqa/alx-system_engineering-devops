@@ -8,11 +8,28 @@ apt-get update
 # Install Nginx
 apt-get install nginx -y
 
-# Start Nginx
-service nginx start
+# Create a new server block for port 80
+echo "
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
 
-# Configure Nginx to listen on port 80
-sed -i '/listen 80 default_server/ s/#*//' /etc/nginx/sites-available/default
+    root /usr/share/nginx/html;
+    index index.html;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+}
+" | sudo tee /etc/nginx/sites-available/default > /dev/null
 
 # Reload Nginx to apply changes
 service nginx reload
