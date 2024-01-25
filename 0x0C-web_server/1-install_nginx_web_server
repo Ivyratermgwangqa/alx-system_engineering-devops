@@ -12,7 +12,7 @@ apt-get install nginx -y
 service nginx start
 
 # Configure Nginx to listen on port 80
-sed -i 's/80 default_server/80/' /etc/nginx/sites-available/default
+sed -i '/listen 80 default_server/ s/#*//' /etc/nginx/sites-available/default
 
 # Reload Nginx to apply changes
 service nginx reload
