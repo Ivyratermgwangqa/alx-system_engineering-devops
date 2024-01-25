@@ -1,23 +1,49 @@
-# Puppet manifest to install and configure Nginx web server
+# Puppet manifest for installing and configuring Nginx
 
-class { 'nginx':
-  ensure  => 'installed',
+# Install Nginx package
+package { 'nginx':
+  ensure => 'installed',
+}
+
+# Configure Nginx server block
+file { '/etc/nginx/sites-available/default':
+  content => "
+    server {
+      listen 80 default_server;
+      listen [::]:80 default_server;
+
+      root /usr/share/nginx/html;
+      index index.html;
+
+      server_name _;
+
+      location / {
+        try_files \$uri \$uri/ =404;
+      }
+
+      error_page 404 /404.html;
+      location = /404.html {
+        root /usr/share/nginx/html;
+        internal;
+      }
+
+      location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+      }
+    }
+  ",
+  notify  => Service['nginx'],
+}
+
+# Reload Nginx to apply changes
+service { 'nginx':
+  ensure  => 'running',
   enable  => true,
-  require => Package['nginx'],
+  require => File['/etc/nginx/sites-available/default'],
 }
 
-file { '/var/www/html/index.html':
-  ensure  => 'file',
+# Create Hello World! index.html
+file { '/usr/share/nginx/html/index.html':
   content => 'Hello World!',
-  require => Class['nginx'],
-}
-
-nginx::resource::vhost { 'default':
-  www_root    => '/var/www/html',
-  port        => '80',
-  proxy       => 'http://localhost:80',
-  ssl         => false,
-  rewrite_to  => 'https://www.youtube.com/watch?v=QH2-TGUlwu4',
-  rewrite_code => 301,
-  require     => File['/var/www/html/index.html'],
+  notify  => Service['nginx'],
 }
