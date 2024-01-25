@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-
 # This script installs and configures Nginx on an Ubuntu machine.
 # It ensures that Nginx is listening on port 80 and returns "Hello World!"
 # when queried at its root.
-
 # Update package information
 apt-get update
 
