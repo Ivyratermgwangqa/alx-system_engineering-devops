@@ -1,11 +1,36 @@
 #!/usr/bin/env bash
-# Configure Nginx custom 404 page with the string "Ceci n'est pas une page"
+# Update package information
+apt-get update
 
-# Create a custom error page with the required string
-echo "Ceci n'est pas une page" > /usr/share/nginx/html/404.html
+# Install Nginx
+apt-get install nginx -y
 
-# Update Nginx configuration to use the custom 404 page
-sed -i '/server_name _;/a \\\n\terror_page 404 /404.html;\n' /etc/nginx/sites-available/default
+# Create a new server block for custom 404 page
+echo "
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
 
-# Restart Nginx without using systemctl
-/etc/init.d/nginx restart
+    server_name _;
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+}
+" | sudo tee /etc/nginx/sites-available/custom_404 > /dev/null
+
+# Create the custom 404 page with the desired string
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html > /dev/null
+
+# Enable the new site
+ln -s /etc/nginx/sites-available/custom_404 /etc/nginx/sites-enabled/
+
+# Reload Nginx to apply changes
+service nginx reload
