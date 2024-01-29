@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# This script installs and configures HAProxy on lb-01
+
+# Install HAProxy
+sudo apt-get update
+sudo apt-get install -y haproxy
+
+# Configure HAProxy to balance traffic between web-01 and web-02 using roundrobin
+echo "
+frontend web
+    bind *:80
+    mode http
+    default_backend servers
+
+backend servers
+    mode http
+    balance roundrobin
+    server web-01 [IP_OF_WEB_01]:80 check
+    server web-02 [IP_OF_WEB_02]:80 check
+" | sudo tee -a /etc/haproxy/haproxy.cfg
+
+# Restart HAProxy to apply changes
+sudo systemctl restart haproxy
