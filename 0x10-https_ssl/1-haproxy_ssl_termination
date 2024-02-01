@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# This script configures HAProxy for SSL termination.
+
+# HAProxy configuration file path
+haproxy_cfg="/etc/haproxy/haproxy.cfg"
+
+# Ensure HAProxy is installed (version 1.5 or higher)
+# Install HAProxy if not installed
+
+# Generate SSL certificate using certbot (provide necessary details)
+certbot certonly --standalone -d www.holberton.online
+
+# Update HAProxy configuration
+echo "
+frontend ft_ssl_termination
+    bind *:443 ssl crt /etc/letsencrypt/live/www.holberton.online/fullchain.pem
+    reqadd X-Forwarded-Proto:\ https
+    default_backend bk_web_servers
+
+backend bk_web_servers
+    server web-01 18.209.180.75:80 check
+    server web-02 18.204.10.4:80 check
+" | sudo tee -a "$haproxy_cfg"
+
+# Restart HAProxy to apply changes
+sudo service haproxy restart
