@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script configures Nginx to run as the nginx user
+sed -i 's/user\s*nginx;/user nginx;\ndaemon off;/' /etc/nginx/nginx.conf
+nginx -g 'daemon off;'
