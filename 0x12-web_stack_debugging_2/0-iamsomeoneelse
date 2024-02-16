@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-#!/usr/bin/env bash
-# This script runs the whoami command under the user passed as an argument
-su -c 'whoami' $1
-=======
 #!/usr/bin/env bash
 # This script runs the whoami command under the user passed as an argument
 sudo -u "$1" whoami
->>>>>>> e24e83e7cebdb147bcce09781f46dcb69e1571dc
