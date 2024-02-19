@@ -7,29 +7,26 @@ import requests
 from sys import argv
 
 if __name__ == "__main__":
-    # Get todos data
-    todos_response = requests.get("https://jsonplaceholder.typicode.com/todos")
-    todos = todos_response.json()
+    url = "https://jsonplaceholder.typicode.com/todos"
+    response = requests.get(url)
+    todos = response.json()
 
-    # Get users data
-    users_response = requests.get("https://jsonplaceholder.typicode.com/users")
+    users_url = "https://jsonplaceholder.typicode.com/users"
+    users_response = requests.get(users_url)
     users = users_response.json()
 
-    # Create a dictionary to store tasks for each user
     todo_dict = {}
     for user in users:
         user_id = user.get('id')
+        username = user.get('username')
         todo_dict[user_id] = []
+        for todo in todos:
+            if todo.get('userId') == user_id:
+                todo_dict[user_id].append({
+                    "username": username,
+                    "task": todo.get('title'),
+                    "completed": todo.get('completed')
+                })
 
-    # Assign tasks to the corresponding user ID
-    for todo in todos:
-        user_id = todo.get('userId')
-        todo_dict[user_id].append({
-            "username": next((user.get('username') for user in users if user.get('id') == user_id), None),
-            "task": todo.get('title'),
-            "completed": todo.get('completed')
-        })
-
-    # Write the data to a JSON file
     with open("todo_all_employees.json", 'w') as json_file:
         json.dump(todo_dict, json_file, indent=4)
