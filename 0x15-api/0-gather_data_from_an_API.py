@@ -1,26 +1,29 @@
 #!/usr/bin/python3
-"""Returns to-do list information for a given employee ID."""
+"""
+Gather data from an API
+"""
+
 import requests
-import sys
+from sys import argv
+
 
 if __name__ == "__main__":
-    # Base URL for API requests
-    url = "https://jsonplaceholder.typicode.com/"
+    user_id = argv[1]
+    user_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
+    todo_url = 'https://jsonplaceholder.typicode.com/todos'
 
-    # Retrieve user information
-    user_id = sys.argv[1]
-    user = requests.get(url + "users/{}".format(user_id)).json()
+    user_response = requests.get(user_url)
+    todo_response = requests.get(todo_url, params={'userId': user_id})
 
-    # Retrieve user's TODO list
-    todos = requests.get(url + "todos", params={"userId": user_id}).json()
+    user_data = user_response.json()
+    todo_data = todo_response.json()
 
-    # Filter completed tasks
-    completed_tasks = [task.get("title") for task in todos if task.get("completed")]
+    employee_name = user_data.get('username')  # Use 'username' instead of 'name'
+    total_tasks = len(todo_data)
+    done_tasks = [task for task in todo_data if task.get('completed')]
 
-    # Print user progress
     print("Employee {} is done with tasks({}/{}):".format(
-        user.get("name"), len(completed_tasks), len(todos)))
-    
-    # Print completed tasks
-    for task in completed_tasks:
-        print("\t", task)
+        employee_name, len(done_tasks), total_tasks))
+
+    for task in done_tasks:
+        print("\t{}".format(task.get('title')))  # Adjust formatting for task titles
