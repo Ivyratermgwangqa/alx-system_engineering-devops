@@ -29,4 +29,4 @@ if __name__ == "__main__":
                 })
 
     with open("todo_all_employees.json", 'w') as json_file:
-        json.dump(todo_dict, json_file)
+        json.dump(todo_dict, json_file, indent=4)
