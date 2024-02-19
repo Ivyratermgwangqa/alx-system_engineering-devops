@@ -62,7 +62,3 @@ After running the scripts, you can inspect the output files to see the exported 
 These scripts were created as part of the ALX Software Engineering curriculum.
 
 Feel free to reach out with any questions or suggestions for improvement!
-```
-
-This README provides a more detailed overview of the scripts, including information about dependencies, the API endpoint, output files, and credits. You can further enhance it with additional details or instructions as needed.
-
