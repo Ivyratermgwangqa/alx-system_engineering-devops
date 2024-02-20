@@ -1,32 +1,43 @@
 #!/usr/bin/python3
 """
-Python script that, using a given REST API.
+Export data to JSON format.
 """
-
 import json
 import requests
-from sys import argv
-
-def export_to_json(employee_id, todos):
-    filename = "{}.json".format(employee_id)
-    with open(filename, 'w') as jsonfile:
-        json.dump({employee_id: todos}, jsonfile)
+import sys
 
 if __name__ == "__main__":
-    if len(argv) != 2:
-        print("Usage: {} <employee_id>".format(argv[0]))
-        exit(1)
+    if len(sys.argv) != 2 or not sys.argv[1].isdigit():
+        print("Usage: {} employee_id".format(sys.argv[0]))
+        sys.exit(1)
 
-    employee_id = argv[1]
-    url_todos = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(employee_id)
+    employee_id = int(sys.argv[1])
 
-    response_todos = requests.get(url_todos)
+    user_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(employee_id)
+    todos_url = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(employee_id)
 
-    if response_todos.status_code != 200:
-        print("Error: Unable to fetch TODO list data")
-        exit(1)
+    try:
+        user_response = requests.get(user_url)
+        todos_response = requests.get(todos_url)
+        user_data = user_response.json()
+        todos_data = todos_response.json()
+    except Exception as e:
+        print("Error: {}".format(e))
+        sys.exit(1)
 
-    todos_data = response_todos.json()
+    user_info = {
+        str(employee_id): [
+            {
+                'task': todo.get('title'),
+                'completed': todo.get('completed'),
+                'username': user_data.get('username')
+            }
+            for todo in todos_data
+        ]
+    }
 
-    export_to_json(employee_id, todos_data)
-    print("Data exported to {}.json".format(employee_id))
+    filename = '{}.json'.format(employee_id)
+    with open(filename, 'w') as file:
+        json.dump(user_info, file)
+
+    print("Tasks exported to", filename)
