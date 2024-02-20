@@ -1,29 +1,15 @@
 #!/usr/bin/python3
-"""
-Gather data from an API
-"""
+"""Retrieve and display TODO list progress for a given employee ID."""
+import requests as req
+import sys
 
-import requests
-from sys import argv
-
-
-if __name__ == "__main__":
-    user_id = argv[1]
-    user_url = 'https://jsonplaceholder.typicode.com/users/' + user_id
-    todo_url = 'https://jsonplaceholder.typicode.com/todos'
-
-    user_response = requests.get(user_url)
-    todo_response = requests.get(todo_url)
-
-    user_data = user_response.json()
-    todo_data = todo_response.json()
-
-    employee_name = user_data.get('name')
-    total_tasks = len(todo_data)
-    done_tasks = [task for task in todo_data if task.get('completed')]
-
-    print("Employee {} is done with tasks({}/{}):".format(
-        employee_name, len(done_tasks), total_tasks))
-
-    for task in done_tasks:
-        print("\t {}".format(task.get('title')))
+if __name__ == '__main__':
+    url = 'https://jsonplaceholder.typicode.com/'
+    user_id = req.get(url + 'users/{}'.format(sys.argv[1])).json()
+    to_do = req.get(url + 'todos', params={'userId': sys.argv[1]}).json()
+    completed = [title.get("title") for title in to_do if
+                 title.get('completed') is True]
+    print("Employee {} is done with tasks({}/{}):".format(user_id.get("name"),
+                                                          len(completed),
+                                                          len(to_do)))
+    [print("\t {}".format(title)) for title in completed]
