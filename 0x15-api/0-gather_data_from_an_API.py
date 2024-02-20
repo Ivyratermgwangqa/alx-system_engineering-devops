@@ -1,29 +1,37 @@
 #!/usr/bin/python3
 """
-Gather data from an API
+Python script that, using a given REST API.
 """
 
 import requests
 from sys import argv
 
-
 if __name__ == "__main__":
-    user_id = argv[1]
-    user_url = 'https://jsonplaceholder.typicode.com/users/' + user_id
-    todo_url = 'https://jsonplaceholder.typicode.com/todos'
+    if len(argv) != 2:
+        print("Usage: {} <employee_id>".format(argv[0]))
+        exit(1)
 
-    user_response = requests.get(user_url)
-    todo_response = requests.get(todo_url)
+    employee_id = argv[1]
+    url_user = 'https://jsonplaceholder.typicode.com/users/{}'.format(employee_id)
+    url_todos = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(employee_id)
 
-    user_data = user_response.json()
-    todo_data = todo_response.json()
+    response_user = requests.get(url_user)
+    response_todos = requests.get(url_todos)
 
-    employee_name = user_data.get('name')
-    total_tasks = len(todo_data)
-    done_tasks = [task for task in todo_data if task.get('completed')]
+    if response_user.status_code != 200:
+        print("Error: Unable to fetch user data")
+        exit(1)
 
-    print("Employee {} is done with tasks({}/{}):".format(
-        employee_name, len(done_tasks), total_tasks))
+    if response_todos.status_code != 200:
+        print("Error: Unable to fetch TODO list data")
+        exit(1)
 
-    for task in done_tasks:
-        print("\t {}".format(task.get('title')))
+    user_data = response_user.json()
+    todos_data = response_todos.json()
+
+    total_tasks = len(todos_data)
+    completed_tasks = [task for task in todos_data if task['completed']]
+
+    print("Employee {} is done with tasks({}/{}):".format(user_data['name'], len(completed_tasks), total_tasks))
+    for task in completed_tasks:
+        print("\t {}".format(task['title']))
