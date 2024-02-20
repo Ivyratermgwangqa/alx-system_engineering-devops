@@ -1,18 +1,47 @@
 #!/usr/bin/python3
-"""Exports to-do list information for a given employee ID to CSV format."""
+"""
+Python script that, using a given REST API.
+"""
+
 import csv
 import requests
-import sys
+from sys import argv
+
+def export_to_csv(employee_id, username, todos):
+    filename = "{}.csv".format(employee_id)
+    with open(filename, 'w', newline='') as csvfile:
+        fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for todo in todos:
+            writer.writerow({'USER_ID': employee_id,
+                             'USERNAME': username,
+                             'TASK_COMPLETED_STATUS': str(todo['completed']),
+                             'TASK_TITLE': todo['title']})
 
 if __name__ == "__main__":
-    user_id = sys.argv[1]
-    url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users/{}".format(user_id)).json()
-    username = user.get("username")
-    todos = requests.get(url + "todos", params={"userId": user_id}).json()
+    if len(argv) != 2:
+        print("Usage: {} <employee_id>".format(argv[0]))
+        exit(1)
 
-    with open("{}.csv".format(user_id), "w", newline="") as csvfile:
-        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        [writer.writerow(
-            [user_id, username, t.get("completed"), t.get("title")]
-         ) for t in todos]
+    employee_id = argv[1]
+    url_user = 'https://jsonplaceholder.typicode.com/users/{}'.format(employee_id)
+    url_todos = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(employee_id)
+
+    response_user = requests.get(url_user)
+    response_todos = requests.get(url_todos)
+
+    if response_user.status_code != 200:
+        print("Error: Unable to fetch user data")
+        exit(1)
+
+    if response_todos.status_code != 200:
+        print("Error: Unable to fetch TODO list data")
+        exit(1)
+
+    user_data = response_user.json()
+    todos_data = response_todos.json()
+
+    export_to_csv(employee_id, user_data['username'], todos_data)
+    print("Data exported to {}.csv".format(employee_id))
