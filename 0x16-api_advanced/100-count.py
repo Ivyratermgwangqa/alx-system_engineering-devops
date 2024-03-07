@@ -3,43 +3,56 @@
 100-count
 """
 import requests
+import operator
 
 
-def count_words(subreddit, word_list, after=None, word_count={}):
-    """Prints a sorted count of given keywords in hot articles of a subreddit"""
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    # Set a custom User-Agent to avoid Too Many Requests error
-    headers = {"User-Agent": "MyBot/1.0"}
-    params = {"after": after} if after else {}
-    response = requests.get(url, headers=headers, params=params)
-    if response.status_code == 200:
-        data = response.json()
-        children = data["data"]["children"]
-        for post in children:
-            title = post["data"]["title"].lower()
-            for word in word_list:
-                if word.lower() in title:
-                    if word.lower() in word_count:
-                        word_count[word.lower()] += 1
-                    else:
-                        word_count[word.lower()] = 1
-        after = data["data"]["after"]
-        if after is not None:
-            count_words(subreddit, word_list, after, word_count)
-        else:
-            sorted_words = sorted(word_count.items(),
-                                  key=lambda x: (-x[1], x[0]))
-            for word, count in sorted_words:
-                print(f"{word}: {count}")
+def count_w(word, title):
+    words = title.split()
+    count = 0
+    for w in words:
+        if w.upper() == word.upper():
+            count += 1
+    return count
+
+
+def count_words(subreddit, word_list, nexT="", count={}):
+    if len(count) == 0:
+        n = [0] * len(word_list)
+        count = dict(zip(word_list, n))
+
+    headers = {'User-agent': 'Alb4tr02'}
+    url = "https://www.reddit.com/r/" + subreddit + "/hot/.json" + nexT
+    req = requests.get(url, headers=headers)
+    req1 = requests.get("https://www.reddit.com/r/" + subreddit, headers=headers)
+    
+    if req1.status_code != 200:
+        return
+    
+    json_data = req.json()
+    if 'error' in json_data:
+        return
+    
+    for post in json_data['data']['children']:
+        title = post['data']['title']
+        for word in word_list:
+            count[word] += count_w(word, title)
+    
+    if json_data['data']['after'] is not None:
+        return count_words(subreddit, word_list, "?after=" + json_data['data']['after'], count)
     else:
-        print(None)
-
-
-if __name__ == "__main__":
-    import sys
-    if len(sys.argv) < 3:
-        print("Usage: {} <subreddit> <list of keywords>".format(sys.argv[0]))
-        print("Ex: {} programming 'python java javascript'".format(
-            sys.argv[0]))
-    else:
-        count_words(sys.argv[1], sys.argv[2].split())
+        aux = sorted(count.items(), key=operator.itemgetter(0), reverse=False)
+        aux1 = {}
+        flag = True
+        lk = []
+        lv = []
+        for element in aux:
+            lk.append(element[0])
+            lv.append(element[1])
+        aux1 = dict(zip(lk, lv))
+        aux = sorted(aux1.items(), key=operator.itemgetter(1), reverse=True)
+        for element in aux:
+            if element[1] != 0:
+                print("{}: {}".format(element[0], element[1]))
+                flag = False
+        if flag:
+            print("")
