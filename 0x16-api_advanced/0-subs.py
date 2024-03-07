@@ -7,20 +7,10 @@ import requests
 
 def number_of_subscribers(subreddit):
     """Returns the number of subscribers for a given subreddit"""
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    # Set a custom User-Agent to avoid Too Many Requests error
-    headers = {"User-Agent": "MyBot/1.0"}
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        data = response.json()
-        if 'data' in data and 'subscribers' in data['data']:
-            return data["data"]["subscribers"]
-    return 0
-
-
-if __name__ == "__main__":
-    import sys
-    if len(sys.argv) < 2:
-        print("Please pass an argument for the subreddit to search.")
-    else:
-        print(number_of_subscribers(sys.argv[1]))
+    headers = {'User-agent': ' JetBrains_official'}
+    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    req = requests.get(url, headers=headers)
+    if req.status_code != 200:
+        return 0
+    req = req.json()
+    return req['data']['subscribers']
