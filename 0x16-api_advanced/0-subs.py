@@ -1,16 +1,36 @@
 #!/usr/bin/python3
+
 """
-0-subs
+This module retrieves the number of subscribers for a given subreddit.
 """
+
 import requests
 
-
 def number_of_subscribers(subreddit):
-    """Returns the number of subscribers for a given subreddit"""
-    headers = {'User-agent': ' JetBrains_official'}
-    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-    req = requests.get(url, headers=headers)
-    if req.status_code != 200:
+    """
+    Retrieves the number of subscribers for a given subreddit.
+    
+    Args:
+        subreddit (str): The name of the subreddit.
+        
+    Returns:
+        int: The number of subscribers for the given subreddit.
+    """
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:73.0) \
+        Gecko/20100101 Firefox/73.0"
+    }
+    response = requests.get(url, headers=headers, allow_redirects=False)
+    if response.status_code == 404:
         return 0
-    req = req.json()
-    return req['data']['subscribers']
+    results = response.json().get("data")
+    return results.get("subscribers")
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) < 2:
+        print("Please pass an argument for the subreddit to search.")
+    else:
+        subreddit = sys.argv[1]
+        print(f"Number of subscribers in r/{subreddit}: {number_of_subscribers(subreddit)}")
