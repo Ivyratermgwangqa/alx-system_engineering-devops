@@ -7,7 +7,9 @@ import requests
 
 def top_ten(subreddit):
     """Prints the titles of the first 10 hot posts listed for a given subreddit"""
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    url = (
+        f"https://www.reddit.com/r/{subreddit}/hot.json"
+    )
     # Set a custom User-Agent to avoid Too Many Requests error
     headers = {"User-Agent": "MyBot/1.0"}
     response = requests.get(url, headers=headers)
