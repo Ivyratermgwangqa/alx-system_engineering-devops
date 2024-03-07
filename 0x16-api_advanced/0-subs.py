@@ -6,13 +6,14 @@ This module retrieves the number of subscribers for a given subreddit.
 
 import requests
 
+
 def number_of_subscribers(subreddit):
     """
     Retrieves the number of subscribers for a given subreddit.
-    
+
     Args:
         subreddit (str): The name of the subreddit.
-        
+
     Returns:
         int: The number of subscribers for the given subreddit.
     """
@@ -27,10 +28,12 @@ def number_of_subscribers(subreddit):
     results = response.json().get("data")
     return results.get("subscribers")
 
+
 if __name__ == "__main__":
     import sys
     if len(sys.argv) < 2:
         print("Please pass an argument for the subreddit to search.")
     else:
         subreddit = sys.argv[1]
-        print(f"Number of subscribers in r/{subreddit}: {number_of_subscribers(subreddit)}")
+        print(
+            f"Number of subscribers in r/{subreddit}: {number_of_subscribers(subreddit)}")
