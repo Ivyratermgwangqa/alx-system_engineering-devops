@@ -37,7 +37,8 @@ def count_words(subreddit, word_list, nexT="", count=None):
             count[word] += count_w(word, title)
 
     if json_data['data']['after'] is not None:
-        return count_words(subreddit, word_list, f"?after={json_data['data']['after']}", count)
+        return count_words(
+            subreddit, word_list, f"?after={json_data['data']['after']}", count)
     else:
         aux = sorted(count.items(), key=operator.itemgetter(0), reverse=False)
         aux1 = {}
