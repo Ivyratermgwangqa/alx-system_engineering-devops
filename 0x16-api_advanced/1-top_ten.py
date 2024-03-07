@@ -19,7 +19,8 @@ def top_ten(subreddit):
                       "Gecko/20100101 Firefox/73.0"
     }
     params = {"limit": 10}
-    response = r.get(url, headers=headers, params=params, allow_redirects=False)
+    response = r.get(url, headers=headers, params=params,
+                     allow_redirects=False)
     if response.status_code == 404:
         print("None")
         return
