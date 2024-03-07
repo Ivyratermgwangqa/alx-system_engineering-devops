@@ -35,5 +35,5 @@ if __name__ == "__main__":
         print("Please pass an argument for the subreddit to search.")
     else:
         subreddit = sys.argv[1]
-        print(
-            f"Number of subscribers in r/{subreddit}: {number_of_subscribers(subreddit)}")
+        print(f"Number of subscribers in r/{subreddit}: "
+              f"{number_of_subscribers(subreddit)}")
