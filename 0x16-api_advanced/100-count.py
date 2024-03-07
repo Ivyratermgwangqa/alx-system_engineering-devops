@@ -22,7 +22,9 @@ def count_words(subreddit, word_list, nexT="", count=None):
     headers = {'User-agent': 'Alb4tr02'}
     url = f"https://www.reddit.com/r/{subreddit}/hot/.json{nexT}"
     req = requests.get(url, headers=headers)
-    req1 = requests.get(f"https://www.reddit.com/r/{subreddit}", headers=headers)
+    req1 = requests.get(
+    f"https://www.reddit.com/r/{subreddit}", headers=headers
+    )
 
     if req1.status_code != 200:
         return
@@ -38,7 +40,8 @@ def count_words(subreddit, word_list, nexT="", count=None):
 
     if json_data['data']['after'] is not None:
         return count_words(
-            subreddit, word_list, f"?after={json_data['data']['after']}", count)
+    subreddit, word_list, "?after=" + json_data['data']['after'], count
+        )
     else:
         aux = sorted(count.items(), key=operator.itemgetter(0), reverse=False)
         aux1 = {}
