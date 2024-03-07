@@ -4,10 +4,12 @@
 """
 import requests
 
+
 def recurse(subreddit, hot_list=[]):
     """Returns a list containing the titles of all hot articles for a given subreddit"""
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    headers = {"User-Agent": "MyBot/1.0"}  # Set a custom User-Agent to avoid Too Many Requests error
+    # Set a custom User-Agent to avoid Too Many Requests error
+    headers = {"User-Agent": "MyBot/1.0"}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
@@ -21,6 +23,7 @@ def recurse(subreddit, hot_list=[]):
             return hot_list
     else:
         return None
+
 
 if __name__ == "__main__":
     import sys
