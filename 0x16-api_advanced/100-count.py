@@ -15,16 +15,14 @@ def count_w(word, title):
     return count
 
 
-def count_words(subreddit, word_list, nexT="", count={}):
-    if len(count) == 0:
-        n = [0] * len(word_list)
-        count = dict(zip(word_list, n))
+def count_words(subreddit, word_list, nexT="", count=None):
+    if count is None:
+        count = {word: 0 for word in word_list}
 
     headers = {'User-agent': 'Alb4tr02'}
-    url = "https://www.reddit.com/r/" + subreddit + "/hot/.json" + nexT
+    url = f"https://www.reddit.com/r/{subreddit}/hot/.json{nexT}"
     req = requests.get(url, headers=headers)
-    req1 = requests.get("https://www.reddit.com/r/" +
-                        subreddit, headers=headers)
+    req1 = requests.get(f"https://www.reddit.com/r/{subreddit}", headers=headers)
 
     if req1.status_code != 200:
         return
@@ -39,7 +37,7 @@ def count_words(subreddit, word_list, nexT="", count={}):
             count[word] += count_w(word, title)
 
     if json_data['data']['after'] is not None:
-        return count_words(subreddit, word_list, "?after=" + json_data['data']['after'], count)
+        return count_words(subreddit, word_list, f"?after={json_data['data']['after']}", count)
     else:
         aux = sorted(count.items(), key=operator.itemgetter(0), reverse=False)
         aux1 = {}
