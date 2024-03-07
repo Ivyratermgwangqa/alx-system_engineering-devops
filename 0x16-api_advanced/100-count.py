@@ -2,8 +2,8 @@
 """
 100-count
 """
-import requests
 import operator
+import requests
 
 
 def count_w(word, title):
