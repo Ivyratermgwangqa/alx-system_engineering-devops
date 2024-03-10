@@ -1,5 +1,8 @@
 # Postmortem: The Great Authentication Service Outage
 
+## 🎨 Visual Aid:
+![Illustration](https://wac-cdn.atlassian.com/dam/jcr:77b7d90d-6b76-47f2-bc2a-f547f8a3eacb/IMMKT-153-illustration-for-postmortem-page.png?cdnVersion=1483)
+
 ## 🚨 Incident Summary:
 - **Duration:** March 6, 2024, 01:00 AM to 02:30 AM (SAST)
 - **Impact:** Authentication service meltdown led to widespread login failures, resulting in a 25% drop in system activity.
