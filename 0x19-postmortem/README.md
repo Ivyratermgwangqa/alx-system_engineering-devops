@@ -1,7 +1,7 @@
 # Postmortem: The Great Authentication Service Outage
 
 ## 🚨 Incident Summary:
-- **Duration:** March 6, 2024, 9:00 AM to 10:30 AM (SAST)
+- **Duration:** March 6, 2024, 01:00 AM to 02:30 AM (SAST)
 - **Impact:** Authentication service meltdown led to widespread login failures, resulting in a 25% drop in system activity.
 - **Root Cause:** A pesky misconfiguration in the database connection settings.
 
